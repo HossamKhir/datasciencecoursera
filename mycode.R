@@ -1,4 +1,4 @@
-# syntax for defining a paramter-less function, (check javascript)
+# syntax for defining a parameter-less function, (check javascript)
 myfunction <- function() {
 	# defining a variable, by assigning the output of a function
 	x <- rnorm(100)
