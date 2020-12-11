@@ -22,10 +22,11 @@ pollutantmean2 <- function(directory, pollutant, id = 1:332) {
 
 pollutantmean <- function(directory, pollutant, id = 1:332) {
     paths <- paste(directory, dir(directory), sep = "/")
-    cpollutant <- numeric()
+    cpollutant <- c()
     for (path in paths) {
         record <- read.csv(path)
-        if (record$ID != id) {
+        if (!(record$ID[1] %in% id)) {
+            # print(record$ID[1])
             next
         }
         cpollutant <- c(
@@ -36,7 +37,8 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
     mean(cpollutant)
 }
 
-# print(pollutantmean("specdata", "sulfate", 1:10))
+pollutantmean("specdata", "sulfate", 1:10)
+pollutantmean2("specdata", "sulfate", 1:10)
 # print(pollutantmean("specdata", "nitrate", 70:72))
 # print(pollutantmean("specdata", "nitrate", 23))
 # print(pollutantmean2("specdata", "nitrate", 23))

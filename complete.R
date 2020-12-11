@@ -23,7 +23,7 @@ complete <- function(directory, id = 1:332) {
     complete_records <- data.frame()
     for (path in paths) {
         record <- read.csv(path)
-        if (record$ID != id) {
+        if (!(record$ID[1] %in% id)) {
             next
         }
         missing_sulfate <- is.na(record$sulfate)

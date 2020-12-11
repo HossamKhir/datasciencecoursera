@@ -22,4 +22,18 @@ corr <- function(directory, threshold = 0) {
     correlations
 }
 
-# corr("specdata", 150)
+# cr <- corr("specdata", 150)
+# head(cr)
+# summary(cr)
+
+# cr <- corr("specdata", 400)
+# head(cr)
+# summary(cr)
+
+# cr <- corr("specdata", 5000)
+# summary(cr)
+# length(cr)
+
+# cr <- corr("specdata")
+# summary(cr)
+# length(cr)
