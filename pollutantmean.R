@@ -1,6 +1,6 @@
 #! /usr/bin/Rscript
 
-pollutantmean <- function(directory, pollutant, id = 1:332) {
+pollutantmean2 <- function(directory, pollutant, id = 1:332) {
     # prepare one long column for collecting records for mean calculation
     cpollutant <- numeric(0)
     for (i in id) { # for each id given
@@ -19,6 +19,24 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
     mean(cpollutant)
 }
 
+
+pollutantmean <- function(directory, pollutant, id = 1:332) {
+    paths <- paste(directory, dir(directory), sep = "/")
+    cpollutant <- numeric()
+    for (path in paths) {
+        record <- read.csv(path)
+        if (record$ID != id) {
+            next
+        }
+        cpollutant <- c(
+            cpollutant,
+            record[!is.na(record[, pollutant]), pollutant]
+        )
+    }
+    mean(cpollutant)
+}
+
 # print(pollutantmean("specdata", "sulfate", 1:10))
 # print(pollutantmean("specdata", "nitrate", 70:72))
 # print(pollutantmean("specdata", "nitrate", 23))
+# print(pollutantmean2("specdata", "nitrate", 23))
